@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Analytical Mind, Technical Precision</title>
+  <meta name="description" content="Personal portfolio of a highly analytical and technical student specializing in Computer Science, Accounting, Mathematics, Chemistry, and Biology." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crimson: {
+              DEFAULT: '#ef233c',
+              50: '#fef2f3',
+              100: '#fde6e8',
+              200: '#fbd0d6',
+              300: '#f7aab4',
+              400: '#f2788a',
+              500: '#ef233c',
+              600: '#d01030',
+              700: '#ae0a28',
+              800: '#910c26',
+              900: '#7c0e25',
+            },
+            noir: {
+              DEFAULT: '#0a0a0a',
+              50: '#171717',
+              100: '#141414',
+              200: '#111111',
+              300: '#0e0e0e',
+              400: '#0a0a0a',
+              500: '#070707',
+              600: '#050505',
+              700: '#030303',
+              800: '#020202',
+              900: '#000000',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Manrope', 'Inter', 'sans-serif'],
+          },
+          animation: {
+            'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'float-delay': 'float 6s ease-in-out 3s infinite',
+            'slide-up': 'slide-up 0.8s ease-out',
+            'slide-up-delay': 'slide-up 0.8s ease-out 0.2s both',
+            'slide-up-delay-2': 'slide-up 0.8s ease-out 0.4s both',
+            'fade-in': 'fade-in 1s ease-out',
+            'border-glow': 'border-glow 3s ease-in-out infinite',
+            'star-drift': 'star-drift 120s linear infinite',
+          },
+          keyframes: {
+            'glow-pulse': {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(239, 35, 60, 0.4), 0 0 60px rgba(239, 35, 60, 0.1)' },
+              '50%': { boxShadow: '0 0 30px rgba(239, 35, 60, 0.6), 0 0 90px rgba(239, 35, 60, 0.2)' },
+            },
+            'float': {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            'slide-up': {
+              '0%': { opacity: '0', transform: 'translateY(40px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            'fade-in': {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            'border-glow': {
+              '0%, 100%': { borderColor: 'rgba(239, 35, 60, 0.2)' },
+              '50%': { borderColor: 'rgba(239, 35, 60, 0.5)' },
+            },
+            'star-drift': {
+              '0%': { transform: 'translateY(0) translateX(0)' },
+              '100%': { transform: 'translateY(-2000px) translateX(-200px)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ========================================
+       RED NOIR — Custom Styles & Animations
+       ======================================== */
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #ef233c; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #d01030; }
+
+    /* Selection */
+    ::selection { background: rgba(239, 35, 60, 0.3); color: #fff; }
+
+    /* Body base */
+    body {
+      background: #0a0a0a;
+      color: #e4e4e7;
+      overflow-x: hidden;
+    }
+
+    /* ── Starfield Parallax Background ─────────────── */
+    .starfield {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .star-layer {
+      position: absolute;
+      width: 200%;
+      height: 400%;
+      top: 0;
+      left: -50%;
+    }
+
+    .star-layer-1 { animation: star-drift 180s linear infinite; }
+    .star-layer-2 { animation: star-drift 120s linear infinite; }
+    .star-layer-3 { animation: star-drift 80s linear infinite; }
+
+    @keyframes star-drift {
+      0%   { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(-50%) translateX(-5%); }
+    }
+
+    /* ── Glassmorphism card ─────────────────────────── */
+    .glass {
+      background: rgba(23, 23, 23, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(239, 35, 60, 0.08);
+    }
+
+    .glass-strong {
+      background: rgba(20, 20, 20, 0.7);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(239, 35, 60, 0.12);
+    }
+
+    /* ── Glow effects ──────────────────────────────── */
+    .glow-red {
+      box-shadow: 0 0 20px rgba(239, 35, 60, 0.3),
+                  0 0 60px rgba(239, 35, 60, 0.08);
+    }
+
+    .glow-red-hover:hover {
+      box-shadow: 0 0 30px rgba(239, 35, 60, 0.5),
+                  0 0 80px rgba(239, 35, 60, 0.15);
+    }
+
+    .text-glow {
+      text-shadow: 0 0 40px rgba(239, 35, 60, 0.5),
+                   0 0 80px rgba(239, 35, 60, 0.2);
+    }
+
+    /* ── CTA Button ────────────────────────────────── */
+    .cta-btn {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, #ef233c, #ff6b6b, #ef233c, #d01030);
+      background-size: 400% 400%;
+      animation: gradient-spin 3s ease infinite;
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .cta-btn:hover::before { opacity: 1; }
+
+    @keyframes gradient-spin {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ── Bento Card hover lift ─────────────────────── */
+    .bento-card {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .bento-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: rgba(239, 35, 60, 0.4);
+      box-shadow: 0 20px 60px rgba(239, 35, 60, 0.12),
+                  0 0 0 1px rgba(239, 35, 60, 0.2);
+    }
+
+    .bento-card .card-accent {
+      transition: all 0.5s ease;
+      width: 40px;
+    }
+    .bento-card:hover .card-accent {
+      width: 100%;
+      opacity: 0.6;
+    }
+
+    /* ── Input focus glow ──────────────────────────── */
+    .input-glow {
+      transition: all 0.3s ease;
+      border: 1px solid rgba(63, 63, 70, 0.5);
+    }
+
+    .input-glow:focus {
+      border-color: #ef233c;
+      box-shadow: 0 0 0 3px rgba(239, 35, 60, 0.15),
+                  0 0 20px rgba(239, 35, 60, 0.1);
+      outline: none;
+    }
+
+    /* ── Skill bar fill ────────────────────────────── */
+    .skill-bar-fill {
+      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0;
+    }
+
+    .skill-bar-fill.animate { width: var(--fill); }
+
+    /* ── Parallax depth on mouse ───────────────────── */
+    .parallax-layer {
+      transition: transform 0.15s ease-out;
+    }
+
+    /* ── Scroll reveal ─────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Noise texture overlay ─────────────────────── */
+    .noise::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ── Nav blur on scroll ────────────────────────── */
+    .nav-scrolled {
+      background: rgba(10, 10, 10, 0.85) !important;
+      backdrop-filter: blur(20px) !important;
+      border-bottom: 1px solid rgba(239, 35, 60, 0.1);
+    }
+
+    /* ── Gradient divider ──────────────────────────── */
+    .divider-glow {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #ef233c, transparent);
+      opacity: 0.3;
+    }
+
+    /* ── Floating orbs ─────────────────────────────── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body class="noise font-sans antialiased">
+
+  <!-- ════════════════════════════════════════════════
+       STARFIELD PARALLAX BACKGROUND
+       ════════════════════════════════════════════════ -->
+  <div class="starfield" id="starfield"></div>
+
+  <!-- ════════════════════════════════════════════════
+       NAVIGATION
+       ════════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#hero" class="font-display font-800 text-xl tracking-tight group flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-crimson inline-block group-hover:animate-glow-pulse transition-all duration-300"></span>
+        <span class="text-white">Portfolio</span>
+        <span class="text-crimson">.</span>
+      </a>
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#projects" class="text-sm text-zinc-400 hover:text-crimson transition-colors duration-300 font-medium">Projects</a>
+        <a href="#skills" class="text-sm text-zinc-400 hover:text-crimson transition-colors duration-300 font-medium">Skills</a>
+        <a href="#contact" class="text-sm text-zinc-400 hover:text-crimson transition-colors duration-300 font-medium">Contact</a>
+      </div>
+      <!-- Mobile menu -->
+      <button id="mobile-toggle" class="md:hidden text-zinc-400 hover:text-crimson transition-colors" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile dropdown -->
+    <div id="mobile-menu" class="md:hidden hidden glass-strong mx-4 mb-2 rounded-xl overflow-hidden">
+      <a href="#projects" class="block px-6 py-3 text-sm text-zinc-300 hover:text-crimson hover:bg-white/5 transition-all">Projects</a>
+      <a href="#skills" class="block px-6 py-3 text-sm text-zinc-300 hover:text-crimson hover:bg-white/5 transition-all">Skills</a>
+      <a href="#contact" class="block px-6 py-3 text-sm text-zinc-300 hover:text-crimson hover:bg-white/5 transition-all">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════════════
+       HERO SECTION
+       ════════════════════════════════════════════════ -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden z-10">
+    <!-- Background orbs -->
+    <div class="orb w-[500px] h-[500px] bg-crimson/10 -top-40 -right-40 animate-float"></div>
+    <div class="orb w-[400px] h-[400px] bg-crimson/5 bottom-20 -left-40 animate-float-delay"></div>
+
+    <div class="relative max-w-5xl mx-auto px-6 text-center">
+      <!-- Overline badge -->
+      <div class="animate-slide-up inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8 text-xs font-medium text-zinc-400 uppercase tracking-widest">
+        <span class="w-2 h-2 rounded-full bg-crimson animate-glow-pulse"></span>
+        Analytical &bull; Technical &bull; Driven
+      </div>
+
+      <!-- Main heading -->
+      <h1 class="animate-slide-up-delay font-display font-extrabold text-5xl sm:text-6xl lg:text-8xl leading-[0.95] tracking-tight text-white mb-6">
+        Where <span class="text-crimson text-glow">Rigorous</span><br />
+        Analysis Meets<br />
+        <span class="text-crimson text-glow">Technical</span> Craft
+      </h1>
+
+      <!-- Sub text -->
+      <p class="animate-slide-up-delay-2 max-w-2xl mx-auto text-lg sm:text-xl text-zinc-400 leading-relaxed mb-10 font-light">
+        A highly analytical student bridging the gap between complex theory and practical execution — 
+        from computational science and financial modeling to cross-disciplinary research.
+      </p>
+
+      <!-- CTA -->
+      <div class="animate-slide-up-delay-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#projects"
+           class="cta-btn relative z-10 inline-flex items-center gap-2 bg-crimson hover:bg-crimson-600 text-white font-semibold px-8 py-4 rounded-xl text-sm tracking-wide animate-glow-pulse transition-all duration-300">
+          <span>Explore My Work</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </a>
+        <a href="#contact"
+           class="inline-flex items-center gap-2 text-zinc-400 hover:text-white border border-zinc-800 hover:border-crimson/40 px-8 py-4 rounded-xl text-sm font-medium transition-all duration-300">
+          Get In Touch
+        </a>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in">
+        <span class="text-xs text-zinc-600 uppercase tracking-[0.2em]">Scroll</span>
+        <div class="w-px h-10 bg-gradient-to-b from-crimson/60 to-transparent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="divider-glow max-w-4xl mx-auto"></div>
+
+  <!-- ════════════════════════════════════════════════
+       PROJECTS — BENTO GRID
+       ════════════════════════════════════════════════ -->
+  <section id="projects" class="relative z-10 py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Section header -->
+      <div class="reveal mb-16 text-center">
+        <p class="text-crimson text-sm font-semibold uppercase tracking-[0.2em] mb-3">Featured Work</p>
+        <h2 class="font-display font-extrabold text-4xl sm:text-5xl text-white">
+          Projects <span class="text-crimson">&</span> Research
+        </h2>
+        <p class="mt-4 text-zinc-500 max-w-xl mx-auto">A curated selection of academic research, financial planning, and interdisciplinary presentations.</p>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
+
+        <!-- Card 1 — Large (spans 2 cols) -->
+        <div class="bento-card glass rounded-2xl p-8 md:col-span-2 relative overflow-hidden group cursor-pointer">
+          <!-- Accent bar -->
+          <div class="card-accent absolute top-0 left-0 h-1 bg-gradient-to-r from-crimson to-crimson/20 rounded-t-2xl"></div>
+          <!-- Tag -->
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-[10px] uppercase tracking-[0.15em] font-bold text-crimson bg-crimson/10 px-3 py-1 rounded-full">Business Research</span>
+            <span class="text-[10px] uppercase tracking-[0.15em] font-medium text-zinc-600">Comparative Study</span>
+          </div>
+          <!-- Content -->
+          <h3 class="font-display font-bold text-xl sm:text-2xl text-white mb-3 group-hover:text-crimson transition-colors duration-300">
+            RTA vs. Masafi Co. LLC — Operational Structures Analysis
+          </h3>
+          <p class="text-zinc-400 text-sm leading-relaxed mb-6 max-w-2xl">
+            A comparative business research study dissecting the operational frameworks, organizational hierarchies, 
+            and strategic methodologies of the Roads and Transport Authority (RTA) and Masafi Co. LLC. 
+            The study evaluates governance models, market positioning, and operational efficiency across both public and private sectors.
+          </p>
+          <!-- Meta -->
+          <div class="flex items-center gap-4 text-xs text-zinc-600">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              Research Paper
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              Public vs. Private Sector
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 2 — Tall -->
+        <div class="bento-card glass rounded-2xl p-8 relative overflow-hidden group cursor-pointer flex flex-col justify-between min-h-[340px]">
+          <div class="card-accent absolute top-0 left-0 h-1 bg-gradient-to-r from-crimson to-crimson/20 rounded-t-2xl"></div>
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-[10px] uppercase tracking-[0.15em] font-bold text-crimson bg-crimson/10 px-3 py-1 rounded-full">Financial Plan</span>
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-3 group-hover:text-crimson transition-colors duration-300">
+              Bubble Tea Stall — Venture Pitch & Financial Model
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              A comprehensive financial plan and investor-ready pitch presentation for a bubble tea stall venture. 
+              Includes market analysis, cost projections, revenue forecasting, break-even analysis, 
+              and a compelling value proposition.
+            </p>
+          </div>
+          <div class="flex items-center gap-4 text-xs text-zinc-600 mt-6">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/></svg>
+              Pitch Deck
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              Financial Model
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 3 — Medium -->
+        <div class="bento-card glass rounded-2xl p-8 relative overflow-hidden group cursor-pointer lg:col-span-1">
+          <div class="card-accent absolute top-0 left-0 h-1 bg-gradient-to-r from-crimson to-crimson/20 rounded-t-2xl"></div>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-[10px] uppercase tracking-[0.15em] font-bold text-crimson bg-crimson/10 px-3 py-1 rounded-full">Presentation</span>
+            <span class="text-[10px] uppercase tracking-[0.15em] font-medium text-zinc-600">Physics</span>
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-3 group-hover:text-crimson transition-colors duration-300">
+            Professional Dynamics of Theoretical Physics
+          </h3>
+          <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+            A structured presentation exploring the professional landscape of theoretical physics — covering career 
+            trajectories, research methodologies, institutional hierarchies, and the interplay between academic 
+            theory and experimental validation.
+          </p>
+          <div class="flex items-center gap-4 text-xs text-zinc-600">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 4V2m0 2a2 2 0 100 4m0-4a2 2 0 110 4m10-4V2m0 2a2 2 0 100 4m0-4a2 2 0 110 4M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              Academic Slide Deck
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 4 — Highlight accent card -->
+        <div class="bento-card rounded-2xl p-8 md:col-span-2 relative overflow-hidden group cursor-pointer bg-gradient-to-br from-crimson/10 via-noir-50/60 to-noir/80 border border-crimson/10 backdrop-blur-xl">
+          <div class="card-accent absolute top-0 left-0 h-1 bg-gradient-to-r from-crimson via-crimson/60 to-transparent rounded-t-2xl"></div>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <div>
+              <p class="text-crimson text-xs font-bold uppercase tracking-[0.2em] mb-2">More Coming Soon</p>
+              <h3 class="font-display font-bold text-xl text-white mb-1">Research & projects are always evolving.</h3>
+              <p class="text-zinc-500 text-sm">New studies, analyses, and technical explorations are underway.</p>
+            </div>
+            <div class="flex-shrink-0">
+              <div class="w-16 h-16 rounded-2xl bg-crimson/10 border border-crimson/20 flex items-center justify-center group-hover:bg-crimson/20 transition-all duration-300">
+                <svg class="w-7 h-7 text-crimson" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="divider-glow max-w-4xl mx-auto"></div>
+
+  <!-- ════════════════════════════════════════════════
+       SKILLS & ACADEMICS
+       ════════════════════════════════════════════════ -->
+  <section id="skills" class="relative z-10 py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Section header -->
+      <div class="reveal mb-16 text-center">
+        <p class="text-crimson text-sm font-semibold uppercase tracking-[0.2em] mb-3">Core Competencies</p>
+        <h2 class="font-display font-extrabold text-4xl sm:text-5xl text-white">
+          Skills <span class="text-crimson">&</span> Academics
+        </h2>
+        <p class="mt-4 text-zinc-500 max-w-xl mx-auto">Rigorous coursework and competencies driving analytical precision across disciplines.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- Left: Academic courses -->
+        <div class="reveal glass rounded-2xl p-8">
+          <h3 class="font-display font-bold text-lg text-white mb-6 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-crimson"></span>
+            Academic Coursework
+          </h3>
+          <div class="space-y-5">
+            <!-- Computer Science -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-zinc-300">Computer Science</span>
+                <span class="text-xs text-crimson font-bold">Advanced</span>
+              </div>
+              <div class="h-2 bg-zinc-800/80 rounded-full overflow-hidden">
+                <div class="skill-bar-fill h-full bg-gradient-to-r from-crimson to-crimson/60 rounded-full" style="--fill: 92%"></div>
+              </div>
+            </div>
+            <!-- Accounting -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-zinc-300">Accounting</span>
+                <span class="text-xs text-crimson font-bold">Advanced</span>
+              </div>
+              <div class="h-2 bg-zinc-800/80 rounded-full overflow-hidden">
+                <div class="skill-bar-fill h-full bg-gradient-to-r from-crimson to-crimson/60 rounded-full" style="--fill: 88%"></div>
+              </div>
+            </div>
+            <!-- Mathematics -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-zinc-300">Mathematics</span>
+                <span class="text-xs text-crimson font-bold">Advanced</span>
+              </div>
+              <div class="h-2 bg-zinc-800/80 rounded-full overflow-hidden">
+                <div class="skill-bar-fill h-full bg-gradient-to-r from-crimson to-crimson/60 rounded-full" style="--fill: 90%"></div>
+              </div>
+            </div>
+            <!-- Chemistry -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-zinc-300">Chemistry</span>
+                <span class="text-xs text-zinc-500 font-semibold">Proficient</span>
+              </div>
+              <div class="h-2 bg-zinc-800/80 rounded-full overflow-hidden">
+                <div class="skill-bar-fill h-full bg-gradient-to-r from-crimson to-crimson/60 rounded-full" style="--fill: 80%"></div>
+              </div>
+            </div>
+            <!-- Biology -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-zinc-300">Biology</span>
+                <span class="text-xs text-zinc-500 font-semibold">Proficient</span>
+              </div>
+              <div class="h-2 bg-zinc-800/80 rounded-full overflow-hidden">
+                <div class="skill-bar-fill h-full bg-gradient-to-r from-crimson to-crimson/60 rounded-full" style="--fill: 78%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Competency cards -->
+        <div class="reveal space-y-5">
+          <!-- Analytical Thinking -->
+          <div class="glass rounded-2xl p-6 flex items-start gap-5 group bento-card">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-crimson/10 border border-crimson/20 flex items-center justify-center group-hover:bg-crimson/20 transition-all duration-300">
+              <svg class="w-5 h-5 text-crimson" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-display font-bold text-white text-sm mb-1">Analytical Thinking</h4>
+              <p class="text-zinc-500 text-xs leading-relaxed">Breaking down complex problems into structured, solvable components through data-driven reasoning and critical evaluation.</p>
+            </div>
+          </div>
+          <!-- Research & Writing -->
+          <div class="glass rounded-2xl p-6 flex items-start gap-5 group bento-card">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-crimson/10 border border-crimson/20 flex items-center justify-center group-hover:bg-crimson/20 transition-all duration-300">
+              <svg class="w-5 h-5 text-crimson" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-display font-bold text-white text-sm mb-1">Academic Research & Writing</h4>
+              <p class="text-zinc-500 text-xs leading-relaxed">Crafting well-structured research papers, comparative analyses, and evidence-based arguments across multiple disciplines.</p>
+            </div>
+          </div>
+          <!-- Financial Modeling -->
+          <div class="glass rounded-2xl p-6 flex items-start gap-5 group bento-card">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-crimson/10 border border-crimson/20 flex items-center justify-center group-hover:bg-crimson/20 transition-all duration-300">
+              <svg class="w-5 h-5 text-crimson" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-display font-bold text-white text-sm mb-1">Financial Modeling & Analysis</h4>
+              <p class="text-zinc-500 text-xs leading-relaxed">Building comprehensive financial projections, break-even analyses, and investor-ready presentations for business ventures.</p>
+            </div>
+          </div>
+          <!-- Technical Presentations -->
+          <div class="glass rounded-2xl p-6 flex items-start gap-5 group bento-card">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-crimson/10 border border-crimson/20 flex items-center justify-center group-hover:bg-crimson/20 transition-all duration-300">
+              <svg class="w-5 h-5 text-crimson" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-display font-bold text-white text-sm mb-1">Technical Presentation</h4>
+              <p class="text-zinc-500 text-xs leading-relaxed">Translating complex scientific and business concepts into clear, visually compelling, and audience-appropriate presentations.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="divider-glow max-w-4xl mx-auto"></div>
+
+  <!-- ════════════════════════════════════════════════
+       CONTACT / FOOTER
+       ════════════════════════════════════════════════ -->
+  <section id="contact" class="relative z-10 py-24 sm:py-32">
+    <div class="max-w-3xl mx-auto px-6">
+      <!-- Section header -->
+      <div class="reveal mb-12 text-center">
+        <p class="text-crimson text-sm font-semibold uppercase tracking-[0.2em] mb-3">Get In Touch</p>
+        <h2 class="font-display font-extrabold text-4xl sm:text-5xl text-white">
+          Let's <span class="text-crimson">Connect</span>
+        </h2>
+        <p class="mt-4 text-zinc-500 max-w-md mx-auto">Have a question, opportunity, or collaboration in mind? I'd love to hear from you.</p>
+      </div>
+
+      <!-- Contact form -->
+      <form class="reveal glass rounded-2xl p-8 sm:p-10 space-y-6" onsubmit="event.preventDefault(); this.querySelector('.submit-btn').textContent='Message Sent!'; this.querySelector('.submit-btn').classList.add('bg-green-600');">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label for="name" class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2">Name</label>
+            <input type="text" id="name" placeholder="Your name"
+                   class="input-glow w-full bg-zinc-900/60 text-white rounded-xl px-5 py-3.5 text-sm placeholder-zinc-600 font-medium" />
+          </div>
+          <div>
+            <label for="email" class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2">Email</label>
+            <input type="email" id="email" placeholder="your@email.com"
+                   class="input-glow w-full bg-zinc-900/60 text-white rounded-xl px-5 py-3.5 text-sm placeholder-zinc-600 font-medium" />
+          </div>
+        </div>
+        <div>
+          <label for="message" class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2">Message</label>
+          <textarea id="message" rows="5" placeholder="Tell me about your idea..."
+                    class="input-glow w-full bg-zinc-900/60 text-white rounded-xl px-5 py-3.5 text-sm placeholder-zinc-600 font-medium resize-none"></textarea>
+        </div>
+        <button type="submit"
+                class="submit-btn cta-btn relative z-10 w-full bg-crimson hover:bg-crimson-600 text-white font-bold py-4 rounded-xl text-sm tracking-wide animate-glow-pulse transition-all duration-300">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════ -->
+  <footer class="relative z-10 border-t border-zinc-800/50">
+    <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <!-- Left -->
+      <div class="flex items-center gap-2 text-sm text-zinc-600">
+        <span class="w-2 h-2 rounded-full bg-crimson/60"></span>
+        <span>&copy; 2026 Portfolio. All rights reserved.</span>
+      </div>
+      <!-- Social links -->
+      <div class="flex items-center gap-4">
+        <!-- GitHub -->
+        <a href="#" class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-500 hover:text-crimson hover:border-crimson/30 transition-all duration-300" aria-label="GitHub">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="#" class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-500 hover:text-crimson hover:border-crimson/30 transition-all duration-300" aria-label="LinkedIn">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <!-- Email -->
+        <a href="mailto:hello@example.com" class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-500 hover:text-crimson hover:border-crimson/30 transition-all duration-300" aria-label="Email">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ════════════════════════════════════════════════
+       SCRIPTS
+       ════════════════════════════════════════════════ -->
+  <script>
+    // ── Starfield generator ─────────────────────────
+    (function createStarfield() {
+      const container = document.getElementById('starfield');
+      const layers = [
+        { count: 80, size: [1, 2], opacity: [0.3, 0.6], className: 'star-layer-1' },
+        { count: 50, size: [1, 3], opacity: [0.4, 0.7], className: 'star-layer-2' },
+        { count: 25, size: [2, 4], opacity: [0.5, 0.9], className: 'star-layer-3' },
+      ];
+
+      layers.forEach(layer => {
+        const el = document.createElement('div');
+        el.classList.add('star-layer', layer.className);
+
+        let svgStars = '';
+        for (let i = 0; i < layer.count; i++) {
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const s = layer.size[0] + Math.random() * (layer.size[1] - layer.size[0]);
+          const o = layer.opacity[0] + Math.random() * (layer.opacity[1] - layer.opacity[0]);
+          const isRed = Math.random() < 0.15;
+          const color = isRed ? 'rgba(239,35,60,' + o + ')' : 'rgba(255,255,255,' + o + ')';
+          svgStars += `<circle cx="${x}%" cy="${y}%" r="${s}" fill="${color}"/>`;
+        }
+
+        el.innerHTML = `<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">${svgStars}</svg>`;
+        container.appendChild(el);
+      });
+    })();
+
+    // ── Navbar scroll effect ────────────────────────
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('nav-scrolled', window.scrollY > 60);
+    });
+
+    // ── Mobile menu toggle ──────────────────────────
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // ── Scroll reveal ───────────────────────────────
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ── Skill bar animation on scroll ───────────────
+    const skillBars = document.querySelectorAll('.skill-bar-fill');
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    skillBars.forEach(bar => skillObserver.observe(bar));
+
+    // ── Subtle parallax on mouse (hero only) ────────
+    const hero = document.getElementById('hero');
+    hero.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      hero.querySelectorAll('.orb').forEach((orb, i) => {
+        const factor = (i + 1) * 0.5;
+        orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+      });
+    });
+  </script>
+
+</body>
+</html>
